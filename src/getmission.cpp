@@ -25,14 +25,8 @@ const char *s;
 
 void mission_Callback(const std_msgs::UInt16 msg)
 {
-
-
     if(msg.data == 1){
-
         ROS_INFO("Mission: AutoDriving");
-
-        //command = "gnome-terminal -- rosrun turtlesim turtlesim_node";
-        //command_stop1 = "rosnode kill /turtlesim";
 
         command = "gnome-terminal -- rosrun autodriving_state autodriving_state";
         command_stop1 = "rosnode kill /autodriving_state";
@@ -42,7 +36,6 @@ void mission_Callback(const std_msgs::UInt16 msg)
         ROS_INFO("Mission: Door");
 
         command = "gnome-terminal -- rosrun door_state door_state";
-
         command_stop2 = "rosnode kill /door_state";
     }
 
@@ -62,16 +55,13 @@ void mission_Callback(const std_msgs::UInt16 msg)
     }
 
     else if(msg.data == 0){
-
         ROS_INFO("Mission Start!!");
 
         c = command.c_str();
-
         system(c);
     }
 
     else if(msg.data == 9){
-
         ROS_INFO("Mission All Stop!!");
 
         a = command_stop1.c_str();
@@ -82,6 +72,31 @@ void mission_Callback(const std_msgs::UInt16 msg)
         //system(o);
         //system(p);
         //system(s);
+    }
+
+
+
+    if(msg.data == 11){
+        command_stop1 = "rosnode kill /autodriving_state";
+        a = command_stop1.c_str();
+        system(a);
+    }
+    else if(msg.data == 12){
+        command_stop2 = "rosnode kill /door_state";
+        d = command_stop2.c_str();
+        system(d);
+    }
+    else if(msg.data == 13){
+        //command = "rosnode kill /door_state";
+        //system(command);
+    }
+    else if(msg.data == 14){
+        //command = "rosnode kill /door_state";
+        //system(command);
+    }
+    else if(msg.data == 15){
+        //command = "rosnode kill /door_state";
+        //system(command);
     }
 
 
@@ -97,4 +112,8 @@ int main(int argc, char **argv)
     ros::spin();
 
     return 0;
+}
+
+void choice_stop(char choice) {
+
 }
