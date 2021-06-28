@@ -31,17 +31,19 @@ void mission_Callback(const std_msgs::UInt16 msg)
 
         ROS_INFO("Mission: AutoDriving");
 
-        command = "gnome-terminal -- rosrun turtlesim turtlesim_node";
-        command_stop1 = "rosnode kill /turtlesim";
+        //command = "gnome-terminal -- rosrun turtlesim turtlesim_node";
+        //command_stop1 = "rosnode kill /turtlesim";
+
+        command = "gnome-terminal -- rosrun autodriving_state autodriving_state";
+        command_stop1 = "rosnode kill /autodriving_state";
     }
 
     else if(msg.data == 2){
         ROS_INFO("Mission: Door");
 
-        command = "gnome-terminal -- rosrun turtlesim turtle_teleop_key";
-        //command = "rosrun turtlesim turtle_teleop_key";
+        command = "gnome-terminal -- rosrun door_state door_state";
 
-        command_stop2 = "rosnode kill /teleop_turtle";
+        command_stop2 = "rosnode kill /door_state";
     }
 
     else if(msg.data == 3){
