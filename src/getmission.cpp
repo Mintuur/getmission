@@ -65,7 +65,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
     else if(msg.data == 60){
         ROS_INFO("md_driver start");
 
-        command = "gnome-terminal -- rosrun lidar_range drok3_parking";
+        command = "gnome-terminal -- rosrun md_driver md_driver_demo_node";
         command_stop6 = "rosnode kill /md_driver_node";
     }
 
