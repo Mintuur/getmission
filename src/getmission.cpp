@@ -14,6 +14,7 @@ std::string command_stop3;
 std::string command_stop4;
 std::string command_stop5;
 std::string command_stop6;
+std::string command_stop7;
 
 const char *c;
 
@@ -24,6 +25,7 @@ const char *p;
 const char *s;
 
 const char *m;
+const char *j;
 
 
 void mission_Callback(const std_msgs::UInt16 msg)
@@ -132,6 +134,13 @@ void mission_Callback(const std_msgs::UInt16 msg)
         m = command_stop6.c_str();
         system(m);
     }
+
+    else if(msg.data == 71){
+        command_stop7 = "rosnode kill /joy_node /rosjoy_2_cmdvel_node /teleop_twist_joy";
+        j = command_stop7.c_str();
+        system(j);
+    }
+    
 
     if(msg.data == 99){
 
