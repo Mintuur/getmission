@@ -66,8 +66,18 @@ void mission_Callback(const std_msgs::UInt16 msg)
         ROS_INFO("md_driver start");
 
         command = "gnome-terminal -- rosrun md_driver md_driver_demo_node";
-        command_stop6 = "rosnode kill /md_driver_node";
+	c = command.c_str();
+	system(c);
     }
+
+    else if(msg.data == 70){
+        ROS_INFO("Joystick start");
+
+        command = "gnome-terminal -- roslaunch rosjoy_to_cmdvel rosjoy_to_cmdvel.launch";
+	c = command.c_str();
+	system(c);
+    }
+
 
     else if(msg.data == 0){
         ROS_INFO("Mission Start!!");
@@ -118,7 +128,7 @@ void mission_Callback(const std_msgs::UInt16 msg)
     }
 
     else if(msg.data == 61){
-        //command_stop2 = "rosnode kill /door_state";
+        command_stop6 = "rosnode kill /md_driver_node";
         m = command_stop6.c_str();
         system(m);
     }
