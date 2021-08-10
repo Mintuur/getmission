@@ -13,6 +13,7 @@ std::string command_stop2;
 std::string command_stop3;
 std::string command_stop4;
 std::string command_stop5;
+std::string command_stop6;
 
 const char *c;
 
@@ -21,6 +22,8 @@ const char *d;
 const char *o;
 const char *p;
 const char *s;
+
+const char *m;
 
 
 void mission_Callback(const std_msgs::UInt16 msg)
@@ -57,6 +60,13 @@ void mission_Callback(const std_msgs::UInt16 msg)
     else if(msg.data == 5){
         ROS_INFO("Mission: Stair");
         //command = "roslaunch ";
+    }
+
+    else if(msg.data == 60){
+        ROS_INFO("md_driver start");
+
+        command = "gnome-terminal -- rosrun lidar_range drok3_parking";
+        command_stop6 = "rosnode kill /md_driver_node";
     }
 
     else if(msg.data == 0){
@@ -105,6 +115,12 @@ void mission_Callback(const std_msgs::UInt16 msg)
     else if(msg.data == 15){
         //command = "rosnode kill /door_state";
         //system(command);
+    }
+
+    else if(msg.data == 61){
+        //command_stop2 = "rosnode kill /door_state";
+        m = command_stop6.c_str();
+        system(m);
     }
 
     if(msg.data == 99){
